@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"os"
 
-	"example.com/hello/app/database"
 	"example.com/hello/app/storage"
 	"github.com/gorilla/mux"
 )
@@ -27,7 +26,6 @@ func loggingMiddleware(next http.Handler) http.Handler {
 }
 
 func main() {
-	database.InitDB()
 
 	router := mux.NewRouter()
 
