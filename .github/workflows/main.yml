@@ -46,6 +46,8 @@ jobs:
         TAG_NAME=${GITHUB_REF#refs/tags/}  # Remove 'refs/tags/' from the reference
         docker build -t mathieuplateforme/mys3:${TAG_NAME} .
         docker push mathieuplateforme/mys3:${TAG_NAME}
+        docker build -t mathieuplateforme/mys3:dev-latest .
+        docker push mathieuplateforme/mys3:dev-latest
 
   notify-result:
     needs: [build]

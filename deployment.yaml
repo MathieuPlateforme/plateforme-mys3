@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
         - name: s3
-          image: docker.io/mathieuplateforme/mys3:1.0.2
+          image: docker.io/mathieuplateforme/mys3:dev-latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
