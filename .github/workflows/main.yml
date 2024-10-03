@@ -49,6 +49,22 @@ jobs:
         docker build -t mathieuplateforme/mys3:dev-latest .
         docker push mathieuplateforme/mys3:dev-latest
 
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Set up kubectl
+        uses: azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+
+      - name: Deploy to Kubernetes
+        run: |
+            kubectl apply -f deployment.yaml
+            kubectl apply -f services.yaml
+            kubectl apply -f ingress.yaml
+
   notify-result:
     needs: [build]
     runs-on: ubuntu-latest

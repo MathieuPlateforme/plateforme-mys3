@@ -18,5 +18,15 @@ spec:
         - name: s3
           image: docker.io/mathieuplateforme/mys3:dev-latest
           imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           ports:
             - containerPort: 8080
+          env:
+            - name: BUCKET_PATH
+              value: "./app/buckets"
