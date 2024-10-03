@@ -61,12 +61,12 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-            kubectl apply -f deployment.yaml
-            kubectl apply -f services.yaml
-            kubectl apply -f ingress.yaml
+            kubectl apply -f ../../deployment.yaml
+            kubectl apply -f ../../services.yaml
+            kubectl apply -f ../../ingress.yaml
 
   notify-result:
-    needs: [build]
+    needs: [build, deploy]
     runs-on: ubuntu-latest
     if: always() 
     steps:
@@ -77,6 +77,9 @@ jobs:
         if [ "${{ needs.build.result }}" == "success" ]; then
           STATUS="Success"
         else
+          STATUS="Failure"
+        fi
+        if [ "${{ needs.deploy.result }}" == "failure" ]; then
           STATUS="Failure"
         fi
         curl -X POST -H 'Content-Type: application/json' -d "{\"text\": \"Workflow $STATUS: ${{ github.repository }}\"}" $CHAT_WEBHOOK_URL
