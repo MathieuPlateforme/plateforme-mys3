@@ -32,7 +32,7 @@ spec:
             value: "./app/buckets"
         volumeMounts:
           - name: s3-buckets-storage
-            mountPath: "./app/buckets"
+            mountPath: /buckets
       volumes:
         - name: s3-buckets-storage
           persistentVolumeClaim:
