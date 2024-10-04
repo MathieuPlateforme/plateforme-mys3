@@ -29,10 +29,10 @@ spec:
           - containerPort: 8080
         env:
           - name: BUCKET_PATH
-            value: "./app/buckets"
+            value: "/app/buckets"
         volumeMounts:
           - name: s3-buckets-storage
-            mountPath: /buckets
+            mountPath: "/app/buckets"
       volumes:
         - name: s3-buckets-storage
           persistentVolumeClaim:
