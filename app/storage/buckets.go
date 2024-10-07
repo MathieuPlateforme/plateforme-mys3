@@ -54,6 +54,8 @@ func ListBuckets(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// dd
+
 	resp := dto.ListAllMyBucketsResponse{
 		XMLName: xml.Name{
 			Local: "ListAllMyBucketsResult",
